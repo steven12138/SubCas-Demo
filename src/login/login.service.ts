@@ -8,7 +8,8 @@ import { account } from '../entity/account.entity';
 @Injectable()
 export class LoginService {
   constructor(
-    @InjectRepository(account) private readonly AccountReop: Repository<account>,
+    @InjectRepository(account)
+    private readonly AccountRepo: Repository<account>,
   ) {
   }
 
@@ -22,7 +23,7 @@ export class LoginService {
   }
 
   async CheckLogin(): Promise<Respond> {
-    const result = await this.AccountReop.findOne({ username: 'steven12138' });
+    const result = await this.AccountRepo.findOne({ username: 'steven12138' });
     console.log(result);
     return {
       statusCode: 200,
