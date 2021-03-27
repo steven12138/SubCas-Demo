@@ -1,5 +1,4 @@
 export interface Respond {
-  code: number;
-  status: string;
-  description: string;
+  statusCode: number;
+  message: string;
 }

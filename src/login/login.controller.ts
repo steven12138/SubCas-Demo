@@ -8,8 +8,8 @@ export class LoginController {
   }
 
   @Get()
-  LoginCheck(): string {
-    return 'HelloWorld';
+  async LoginCheck(): Promise<Respond> {
+    return await this.loginService.CheckLogin();
   }
 
   @Post()
