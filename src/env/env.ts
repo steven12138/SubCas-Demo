@@ -4,6 +4,5 @@ export const EnvConst = {
   SQLDatabase: 'SubCas',
   SQLUsername: 'subcas',
   SQLPassword: 'do3eM563sReLnBzh',
-  SQLPort:3306,
-
+  SQLPort: 3306,
 };

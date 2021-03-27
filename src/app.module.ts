@@ -8,7 +8,7 @@ import { ValidateService } from './validate/validate.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoginModule } from './login/login.module';
 import { EnvConst } from './env/env';
-import {account} from './entity/account.entity';
+import { Account } from './entity/account.entity';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import {account} from './entity/account.entity';
       username: EnvConst.SQLUsername,
       password: EnvConst.SQLPassword,
       database: EnvConst.SQLDatabase,
-      entities: [account],
+      entities: [Account],
       synchronize: true,
     }),
     LoginModule,

@@ -3,15 +3,14 @@ import { Respond } from '../interfaces/respond.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { account } from '../entity/account.entity';
+import { Account } from '../entity/account.entity';
 
 @Injectable()
 export class LoginService {
   constructor(
-    @InjectRepository(account)
-    private readonly AccountRepo: Repository<account>,
-  ) {
-  }
+    @InjectRepository(Account)
+    private readonly AccountRepo: Repository<Account>,
+  ) {}
 
   SignIn(params): Respond {
     const usr = params.usr;
