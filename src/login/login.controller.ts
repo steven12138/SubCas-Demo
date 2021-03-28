@@ -4,8 +4,7 @@ import { Respond } from '../interfaces/respond.interface';
 
 @Controller('login')
 export class LoginController {
-  constructor(private readonly loginService: LoginService) {
-  }
+  constructor(private readonly loginService: LoginService) {}
 
   @Get()
   async LoginCheck(): Promise<Respond> {

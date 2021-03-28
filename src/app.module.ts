@@ -1,12 +1,19 @@
 import { Module } from '@nestjs/common';
+
+// About App Service
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LogoutController } from './logout/logout.controller';
-import { ValidateController } from './validate/validate.controller';
-import { LogoutService } from './logout/logout.service';
-import { ValidateService } from './validate/validate.service';
+
+//SQL Module
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+// API Module
 import { LoginModule } from './login/login.module';
+import { ValidateModule } from './validate/validate.module';
+import { LogoutModule } from './logout/logout.module';
+import { SignupModule } from './signup/signup.module';
+
+//EnvConst && Entity
 import { EnvConst } from './env/env';
 import { Account } from './entity/account.entity';
 
@@ -23,8 +30,11 @@ import { Account } from './entity/account.entity';
       synchronize: true,
     }),
     LoginModule,
+    ValidateModule,
+    LogoutModule,
+    SignupModule,
   ],
-  controllers: [AppController, LogoutController, ValidateController],
-  providers: [AppService, LogoutService, ValidateService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
