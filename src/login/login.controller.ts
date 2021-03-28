@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { Respond } from '../interfaces/respond.interface';
 
@@ -8,11 +8,18 @@ export class LoginController {
 
   @Get()
   async LoginCheck(): Promise<Respond> {
+    //TODO: TGT SESSION 的判断
     return await this.loginService.CheckLogin();
   }
 
   @Post()
-  SignIn(@Param() params): Respond {
-    return this.loginService.SignIn(params);
+  async SignIn(@Query() params, @Res() res): Promise<void> {
+    const result: Respond = await this.loginService.SignIn(params);
+    //302 Redirect When Login Success.
+    if (result.statusCode === 200) {
+      //TODO: 重定向时加入ServerTicket
+      res.status(302).redirect(params.service);
+    }
+    res.send(result);
   }
 }

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Account {
@@ -19,4 +19,7 @@ export class Account {
 
   @Column()
   description: string;
+
+  @Column()
+  emailValidateCode: string | undefined | null;
 }
