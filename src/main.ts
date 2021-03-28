@@ -16,7 +16,7 @@ async function bootstrap() {
   );
 
   app.register(fastifyCookie, {
-    secret: EnvConst.CookieSecert,
+    secret: EnvConst.CookieSecret,
   });
 
   await app.listen(port);
