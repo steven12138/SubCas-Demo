@@ -28,5 +28,5 @@ lerna-debug.log*
 /.vscode
 
 # About Password
-/src/env
-/ormconfig.json
+src/env/*
+src/env/env.ts

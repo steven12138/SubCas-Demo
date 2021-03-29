@@ -36,7 +36,6 @@ export class LoginService {
 
     // 获取用户信息
     const account = await this.AccountRepo.findOne({ username: usr });
-
     // 用户不存在
     if (account === undefined) {
       return {

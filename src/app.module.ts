@@ -16,6 +16,7 @@ import { SignupModule } from './signup/signup.module';
 // 数据库设置 env 和 数据表设计 Account
 import { EnvConst } from './env/env';
 import { Account } from './entity/account.entity';
+import { MailVerifyModule } from './mail-verify/mail-verify.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { Account } from './entity/account.entity';
     ValidateModule,
     LogoutModule,
     SignupModule,
+    MailVerifyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
