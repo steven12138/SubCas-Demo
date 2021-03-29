@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+// 数据表设计
 @Entity()
 export class Account {
   @PrimaryGeneratedColumn()

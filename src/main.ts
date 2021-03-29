@@ -7,8 +7,10 @@ import {
 } from '@nestjs/platform-fastify';
 import { EnvConst } from './env/env';
 
+// 挂载端口
 const port = 3000;
 
+// 引导程序
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,

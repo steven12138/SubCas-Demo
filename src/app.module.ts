@@ -4,16 +4,16 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-//SQL Module
+// SQL 模块
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// API Module
+// API 模块
 import { LoginModule } from './login/login.module';
 import { ValidateModule } from './validate/validate.module';
 import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
 
-//EnvConst && Entity
+// 数据库设置 env 和 数据表设计 Account
 import { EnvConst } from './env/env';
 import { Account } from './entity/account.entity';
 
