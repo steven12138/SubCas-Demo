@@ -2,12 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { Respond } from '../interfaces/respond.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 import { Account } from '../entity/account.entity';
 
 @Injectable()
 export class LoginService {
   constructor(
+    private readonly jwtService: JwtService,
     @InjectRepository(Account)
     private readonly AccountRepo: Repository<Account>,
   ) {}
@@ -19,11 +21,12 @@ export class LoginService {
    *  pwd: MD5加密之后的密码
    *  service: 要登录的目标站点
    * }
+   * @param session 传入session对象用于签发
    *
    * @return statusCode
    * @return message
    */
-  async SignIn(params): Promise<Respond> {
+  async SignIn(params, session): Promise<Respond> {
     const usr = params.usr;
     const pwd = params.pwd;
     const service = params.service;
@@ -61,11 +64,21 @@ export class LoginService {
     }
 
     // 登录成功
-    // TODO: ServerTicket & TGT 签发
+    //JWT签发
+    const ServerTicket = this.jwtService.sign({
+      username: usr,
+      timeStamp: new Date().getTime(),
+    });
+
+    //签发TGT
+    session.set('login', usr);
 
     return {
       statusCode: 200,
       message: 'LoginSuccess',
+      data: {
+        ServerTicket: ServerTicket,
+      },
     };
   }
 

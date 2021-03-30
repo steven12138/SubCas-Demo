@@ -1,10 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import fastifyCookie from 'fastify-cookie';
 import { AppModule } from './app.module';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import secureSession from 'fastify-secure-session';
 import { EnvConst } from './env/env';
 
 // 挂载端口
@@ -17,8 +14,9 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.register(fastifyCookie, {
-    secret: '123456',
+  app.register(secureSession, {
+    secret: EnvConst.SessionSecret,
+    salt: EnvConst.SessionSalt,
   });
 
   await app.listen(port);

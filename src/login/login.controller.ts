@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Query, Res } from '@nestjs/common';
+import { Controller, Get, Post, Query, Res, Session } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { Respond } from '../interfaces/respond.interface';
+import * as secureSession from 'fastify-secure-session';
 
 @Controller('login')
 export class LoginController {
@@ -18,16 +19,19 @@ export class LoginController {
   /**
    * 使用Post方法，判断登录及重定向
    *
-   * @param params
-   * @param res
+   * @param params 传输参数
+   * @param res 用于重定向和返回的原件
+   * @param session session对象，签发session
    */
   @Post()
-  async SignIn(@Query() params, @Res() res): Promise<void> {
-    const result: Respond = await this.loginService.SignIn(params);
+  async SignIn(@Query() params, @Res() res, @Session() session: secureSession.Session): Promise<void> {
+    const result: Respond = await this.loginService.SignIn(params, session);
     // 当登录成功时返回 302 重定向
     if (result.statusCode === 200) {
-      // TODO: 重定向时加入ServerTicket
-      res.status(302).redirect(params.service);
+      res.cookie('jwt', result.data.ServerTicket);
+      res
+        .status(302)
+        .redirect(params.service + '?ST=' + result.data.ServerTicket);
     }
     res.send(result);
   }
