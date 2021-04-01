@@ -84,16 +84,35 @@ export class LoginService {
 
   // TODO: 完善检查登录函数
   /**
+   * @param session 获取登录状态
+   *
    * 检查登录函数
    * @return statusCode
    * @return message
    */
-  async CheckLogin(): Promise<Respond> {
-    const result = await this.AccountRepo.findOne({ username: 'steven12138' });
-    console.log(result);
+  async CheckLogin(session): Promise<Respond> {
+
+    //检查是否存在Session
+    const usr = session.get('login');
+    if (usr === undefined) {
+      return {
+        statusCode: 403,
+        message: 'not Login',
+      };
+    }
+
+    //签发JWT
+    const ServerTicket = this.jwtService.sign({
+      username: usr,
+      timeStamp: new Date().getTime(),
+    });
+
     return {
       statusCode: 200,
-      message: 'helloWorld',
+      message: 'Login Success',
+      data: {
+        ServerTicket: ServerTicket,
+      },
     };
   }
 }

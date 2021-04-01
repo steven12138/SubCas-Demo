@@ -12,4 +12,7 @@ export const EnvConst = {
   SQLUsername: 'root',
   SQLPassword: 'password',
   SQLPort: 3306,
+
+  //URL
+  LoginSite: 'https://account.bdfzer.com',
 };
