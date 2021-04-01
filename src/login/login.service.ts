@@ -23,8 +23,10 @@ export class LoginService {
    * }
    * @param session 传入session对象用于签发
    *
-   * @return statusCode
-   * @return message
+   * @return Respond:{
+   *  statusCode: 状态码
+   *  message: 消息
+   * }
    */
   async SignIn(params, session): Promise<Respond> {
     const usr = params.usr;
