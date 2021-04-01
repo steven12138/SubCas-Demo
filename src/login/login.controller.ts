@@ -23,16 +23,21 @@ export class LoginController {
     // TODO: TGT SESSION 的判断
     const result = await this.loginService.CheckLogin(session);
     switch (result.statusCode) {
-      case 403:
+      //Session Not Found
+      case 403: {
         res
           .status(302)
           .redirect(EnvConst.LoginSite + '?service=' + params.service);
         break;
-      case 200:
+      }
+
+      //Get Login
+      case 200: {
         res
           .status(302)
           .redirect(params.service + '?ST=' + result.data.ServerTicket);
         break;
+      }
     }
   }
 
