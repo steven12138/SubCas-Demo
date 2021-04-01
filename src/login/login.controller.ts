@@ -57,7 +57,6 @@ export class LoginController {
     const result: Respond = await this.loginService.SignIn(params, session);
     // 当登录成功时返回 302 重定向
     if (result.statusCode === 200) {
-      res.cookie('jwt', result.data.ServerTicket);
       res
         .status(302)
         .redirect(params.service + '?ST=' + result.data.ServerTicket);
