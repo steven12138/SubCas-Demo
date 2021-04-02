@@ -12,11 +12,13 @@ import { LoginModule } from './login/login.module';
 import { ValidateModule } from './validate/validate.module';
 import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
+import { MailVerifyModule } from './mail-verify/mail-verify.module';
+import { ModifyDetailModule } from './modify-detail/modify-detail.module';
+import { ModifyPasswordModule } from './modify-password/modify-password.module';
 
 // 数据库设置 env 和 数据表设计 Account
 import { EnvConst } from './env/env';
 import { Account } from './entity/account.entity';
-import { MailVerifyModule } from './mail-verify/mail-verify.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { MailVerifyModule } from './mail-verify/mail-verify.module';
     LogoutModule,
     SignupModule,
     MailVerifyModule,
+    ModifyDetailModule,
+    ModifyPasswordModule,
   ],
   controllers: [AppController],
   providers: [AppService],

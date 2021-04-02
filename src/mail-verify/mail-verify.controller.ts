@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('mail-verify')
+@Controller('mailVerify')
 export class MailVerifyController {}
