@@ -13,6 +13,14 @@ export const EnvConst = {
   SQLPassword: 'password',
   SQLPort: 3306,
 
+  //Mail
+  mailHost: 'smtp.office365.com',
+  mailPort: '587',
+  mailAuthUser: 'hetianyang@i.pkuschool.edu.cn',
+  mailAuthPass: 'H04t07y26',
+  mailName: '何天阳',
+  mailFrom: '"何天阳" <hetianyang@i.pkuschool.edu.cn>',
+
   //URL
   LoginSite: 'https://account.bdfzer.com',
 };

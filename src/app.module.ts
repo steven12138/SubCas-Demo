@@ -7,6 +7,9 @@ import { AppService } from './app.service';
 // SQL 模块
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+//Mail
+import { MailerModule } from '@nestjs-modules/mailer';
+
 // API 模块
 import { LoginModule } from './login/login.module';
 import { ValidateModule } from './validate/validate.module';
@@ -31,6 +34,16 @@ import { Account } from './entity/account.entity';
       database: EnvConst.SQLDatabase,
       entities: [Account],
       synchronize: true,
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: EnvConst.mailHost,
+        port: EnvConst.mailPort,
+        auth: {
+          user: EnvConst.mailAuthUser,
+          pass: EnvConst.mailAuthPass,
+        },
+      },
     }),
     LoginModule,
     ValidateModule,
