@@ -18,6 +18,7 @@ import { SignupModule } from './signup/signup.module';
 import { MailVerifyModule } from './mail-verify/mail-verify.module';
 import { ModifyDetailModule } from './modify-detail/modify-detail.module';
 import { ModifyPasswordModule } from './modify-password/modify-password.module';
+import { ForgetPasswordModule } from './forget-password/forget-password.module';
 
 // 数据库设置 env 和 数据表设计 Account
 import { EnvConst } from './env/env';
@@ -52,6 +53,7 @@ import { Account } from './entity/account.entity';
     MailVerifyModule,
     ModifyDetailModule,
     ModifyPasswordModule,
+    ForgetPasswordModule,
   ],
   controllers: [AppController],
   providers: [AppService],
