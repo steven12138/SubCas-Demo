@@ -23,4 +23,7 @@ export class Account {
 
   @Column()
   emailValidateCode: string | undefined | null;
+
+  @Column()
+  forgetPasswordValidateCode: string | undefined | null;
 }

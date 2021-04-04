@@ -21,6 +21,7 @@ export class LoginService {
    *  pwd: MD5加密之后的密码
    *  service: 要登录的目标站点
    * }
+   * @param params
    * @param session 传入session对象用于签发
    *
    * @return Respond:{
@@ -65,6 +66,13 @@ export class LoginService {
       };
     }
 
+    //判断是否正在重置密码
+    if (account.forgetPasswordValidateCode !== '') {
+      await this.AccountRepo.update(account.uid, {
+        forgetPasswordValidateCode: '',
+      });
+    }
+
     // 登录成功
     //JWT签发
     const ServerTicket = this.jwtService.sign({
@@ -93,7 +101,6 @@ export class LoginService {
    * @return message
    */
   async CheckLogin(session): Promise<Respond> {
-
     //检查是否存在Session
     const usr = session.get('login');
     if (usr === undefined) {

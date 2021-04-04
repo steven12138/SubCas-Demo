@@ -20,7 +20,6 @@ export class LoginController {
     @Res() res,
     @Session() session: secureSession.Session,
   ): Promise<void> {
-    // TODO: TGT SESSION 的判断
     const result = await this.loginService.CheckLogin(session);
     switch (result.statusCode) {
       //Session Not Found
