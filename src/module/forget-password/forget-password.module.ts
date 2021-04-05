@@ -3,8 +3,8 @@ import { ForgetPasswordController } from './forget-password.controller';
 import { ForgetPasswordService } from './forget-password.service';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Account } from '../entity/account.entity';
-import { EnvConst } from '../env/env';
+import { Account } from '../../entity/account.entity';
+import { EnvConst } from '../../env/env';
 
 @Module({
   imports: [

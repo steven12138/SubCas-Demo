@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
+import { ValidateController } from './validate.controller';
+import { ValidateService } from './validate.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoginController } from './login.controller';
-import { LoginService } from './login.service';
-import { Account } from '../entity/account.entity';
 import { JwtModule } from '@nestjs/jwt';
-import { EnvConst } from '../env/env';
+import { Account } from '../../entity/account.entity';
+import { EnvConst } from '../../env/env';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { EnvConst } from '../env/env';
       },
     }),
   ],
-  controllers: [LoginController],
-  providers: [LoginService],
+  controllers: [ValidateController],
+  providers: [ValidateService],
 })
-export class LoginModule {}
+export class ValidateModule {}

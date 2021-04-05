@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
-import { Account } from '../entity/account.entity';
+import { Account } from '../../entity/account.entity';
 
 @Injectable()
 export class LoginService {

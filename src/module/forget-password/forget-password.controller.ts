@@ -1,6 +1,6 @@
 import { Controller, Post, Query, Session } from '@nestjs/common';
 import { ForgetPasswordService } from './forget-password.service';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 import * as secureSession from 'fastify-secure-session';
 
 @Controller('forgetPassword')

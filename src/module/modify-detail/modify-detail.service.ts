@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Account } from '../entity/account.entity';
+import { Account } from '../../entity/account.entity';
 
 @Injectable()
 export class ModifyDetailService {

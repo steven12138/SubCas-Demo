@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 
 @Controller('logout')
 export class LogoutController {

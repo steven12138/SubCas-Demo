@@ -1,6 +1,6 @@
 import { Controller, Post, Query, Session } from '@nestjs/common';
 import { ModifyDetailService } from './modify-detail.service';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 import * as secureSession from 'fastify-secure-session';
 
 @Controller('modifyDetail')

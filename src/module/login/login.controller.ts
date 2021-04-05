@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Query, Res, Session } from '@nestjs/common';
 import { LoginService } from './login.service';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 import * as secureSession from 'fastify-secure-session';
-import { EnvConst } from '../env/env';
+import { EnvConst } from '../../env/env';
 
 @Controller('login')
 export class LoginController {

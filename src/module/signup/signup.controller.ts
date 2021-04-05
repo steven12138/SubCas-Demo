@@ -1,6 +1,6 @@
 import { Controller, Post, Query, Res } from '@nestjs/common';
 import { SignupService } from './signup.service';
-import { Respond } from '../interfaces/respond.interface';
+import { Respond } from '../../interfaces/respond.interface';
 
 @Controller('signup')
 export class SignupController {

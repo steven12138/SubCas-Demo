@@ -11,14 +11,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MailerModule } from '@nestjs-modules/mailer';
 
 // API 模块
-import { LoginModule } from './login/login.module';
-import { ValidateModule } from './validate/validate.module';
-import { LogoutModule } from './logout/logout.module';
-import { SignupModule } from './signup/signup.module';
-import { MailVerifyModule } from './mail-verify/mail-verify.module';
-import { ModifyDetailModule } from './modify-detail/modify-detail.module';
-import { ModifyPasswordModule } from './modify-password/modify-password.module';
-import { ForgetPasswordModule } from './forget-password/forget-password.module';
+import { LoginModule } from './module/login/login.module';
+import { ValidateModule } from './module/validate/validate.module';
+import { LogoutModule } from './module/logout/logout.module';
+import { SignupModule } from './module/signup/signup.module';
+import { MailVerifyModule } from './module/mail-verify/mail-verify.module';
+import { ModifyDetailModule } from './module/modify-detail/modify-detail.module';
+import { ModifyPasswordModule } from './module/modify-password/modify-password.module';
+import { ForgetPasswordModule } from './module/forget-password/forget-password.module';
 
 // 数据库设置 env 和 数据表设计 Account
 import { EnvConst } from './env/env';

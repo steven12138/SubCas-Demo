@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Account } from '../entity/account.entity';
-import { Respond } from '../interfaces/respond.interface';
+import { Account } from '../../entity/account.entity';
+import { Respond } from '../../interfaces/respond.interface';
 import { MailerService } from '@nestjs-modules/mailer';
-import { EnvConst } from '../env/env';
-import { GenerateToken } from '../toolbox/token';
+import { EnvConst } from '../../env/env';
+import { GenerateToken } from '../../toolbox/token';
 
 @Injectable()
 export class ForgetPasswordService {
