@@ -26,4 +26,7 @@ export class Account {
 
   @Column()
   forgetPasswordValidateCode: string | undefined | null;
+
+  @Column()
+  registeredTime: number;
 }
