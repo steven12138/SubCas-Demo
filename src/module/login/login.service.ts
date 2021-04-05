@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
 import { Account } from '../../entity/account.entity';
-import { RegisteredSystem } from '../../entity/registeredSystem.entity';
+import { Behaviour } from '../../entity/behaviour.entity';
 
 @Injectable()
 export class LoginService {
@@ -13,8 +13,8 @@ export class LoginService {
     private readonly jwtService: JwtService,
     @InjectRepository(Account)
     private readonly AccountRepo: Repository<Account>,
-    @InjectRepository(RegisteredSystem)
-    private readonly RegisteredSystemRepo: Repository<RegisteredSystem>,
+    @InjectRepository(Behaviour)
+    private readonly BehaviourRepo: Repository<Behaviour>,
   ) {}
 
   /**
@@ -26,13 +26,15 @@ export class LoginService {
    * }
    * @param params
    * @param session 传入session对象用于签发
+   * @param UA
+   * @param IP
    *
    * @return Respond:{
    *  statusCode: 状态码
    *  message: 消息
    * }
    */
-  async SignIn(params, session): Promise<Respond> {
+  async SignIn(params, session, UA, IP): Promise<Respond> {
     const usr = params.usr;
     const pwd = params.pwd;
     const service = params.service;
@@ -87,6 +89,14 @@ export class LoginService {
     //签发TGT
     session.set('login', usr);
 
+    await this.BehaviourRepo.insert({
+      time: new Date(),
+      behaviour: 'Sign In',
+      UA: UA ? UA : 'Failed to Get UserAgent',
+      IP: IP ? IP : 'Failed to Get IP Address',
+      data: service,
+    });
+
     return {
       statusCode: 200,
       message: 'LoginSuccess',
@@ -101,10 +111,18 @@ export class LoginService {
    * @param session 获取登录状态
    *
    * 检查登录函数
+   * @param IP
+   * @param UA
+   * @param service
    * @return statusCode
    * @return message
    */
-  async CheckLogin(session): Promise<Respond> {
+  async CheckLogin(
+    session,
+    IP: string,
+    UA: string,
+    service: string,
+  ): Promise<Respond> {
     //检查是否存在Session
     const usr = session.get('login');
     if (usr === undefined) {
@@ -118,6 +136,14 @@ export class LoginService {
     const ServerTicket = this.jwtService.sign({
       username: usr,
       timeStamp: new Date().getTime(),
+    });
+
+    await this.BehaviourRepo.insert({
+      time: new Date(),
+      behaviour: 'Sign In Automatic',
+      UA: UA ? UA : 'Failed to Get UserAgent',
+      IP: IP ? IP : 'Failed to Get IP Address',
+      data: service,
     });
 
     return {
