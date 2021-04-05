@@ -1,7 +1,8 @@
-import { Controller, Post, Query, Session } from '@nestjs/common';
+import { Controller, Post, Query, Session, UseGuards } from '@nestjs/common';
 import { ModifyDetailService } from './modify-detail.service';
 import { Respond } from '../../interfaces/respond.interface';
 import * as secureSession from 'fastify-secure-session';
+import { AuthGuard } from '../../guard/auth.guard';
 
 @Controller('modifyDetail')
 export class ModifyDetailController {
@@ -13,17 +14,14 @@ export class ModifyDetailController {
    * @param session 用于获取用户名&验证登录状态
    */
   @Post()
+  @UseGuards(AuthGuard)
   async modifyDetail(
     @Query() params,
     @Session() session: secureSession.Session,
   ): Promise<Respond> {
-    const username = session.get('login');
-    if (username === undefined) {
-      return {
-        statusCode: 403,
-        message: 'Not Login',
-      };
-    }
-    return await this.modifyDetailService.modifyDetail(params, username);
+    return await this.modifyDetailService.modifyDetail(
+      params,
+      session.get('login'),
+    );
   }
 }

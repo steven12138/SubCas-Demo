@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
 import { Account } from '../../entity/account.entity';
+import { RegisteredSystem } from '../../entity/registeredSystem.entity';
 
 @Injectable()
 export class LoginService {
@@ -12,6 +13,8 @@ export class LoginService {
     private readonly jwtService: JwtService,
     @InjectRepository(Account)
     private readonly AccountRepo: Repository<Account>,
+    @InjectRepository(RegisteredSystem)
+    private readonly RegisteredSystemRepo: Repository<RegisteredSystem>,
   ) {}
 
   /**
@@ -33,6 +36,7 @@ export class LoginService {
     const usr = params.usr;
     const pwd = params.pwd;
     const service = params.service;
+
     if (usr === '' || pwd === '' || service === '') {
       return {
         statusCode: 411,

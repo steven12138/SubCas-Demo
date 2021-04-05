@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Query, Res, Session } from '@nestjs/common';
+import { Controller, Get, Post, Query, Res, Session, UseGuards } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { Respond } from '../../interfaces/respond.interface';
 import * as secureSession from 'fastify-secure-session';
 import { EnvConst } from '../../env/env';
+import { ServiceGuard } from '../../guard/service.guard';
 
 @Controller('login')
 export class LoginController {
@@ -15,6 +16,7 @@ export class LoginController {
    * @param session session对象，签发session
    */
   @Get()
+  @UseGuards(ServiceGuard)
   async LoginCheck(
     @Query() params,
     @Res() res,
@@ -48,6 +50,7 @@ export class LoginController {
    * @param session session对象，签发session
    */
   @Post()
+  @UseGuards(ServiceGuard)
   async SignIn(
     @Query() params,
     @Res() res,
